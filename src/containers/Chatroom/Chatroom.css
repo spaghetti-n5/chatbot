@@ -1,0 +1,25 @@
+.Chatroom {
+  width: 600px;
+  height: 650px;
+  border: 1px solid #C1C1C1;
+  box-sizing: border-box;
+  border-radius: 7px;
+  background-color: #F2F5F8;
+  margin: auto;
+  margin-bottom: 3px;
+  margin-top: 3px;
+}
+
+.Title {
+  text-align: center;
+  width: 600px;
+  border: 1px solid #C1C1C1;
+  box-sizing: border-box;
+  border-radius: 7px;
+  background-color: #F2F5F8;
+  margin: auto;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  color: #464954;
+}

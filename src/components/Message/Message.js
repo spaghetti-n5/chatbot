@@ -3,20 +3,10 @@ import React from 'react';
 import classes from './Message.css';
 
 const Message = (props) => (
-  <div style={{width:'500px',border:'1px solid',textAlign:'center', margin:'10px auto'}}>
-    <div className={classes[props.sender]}>
-      {props.sender}
-    </div>
-    <div>
-      {props.message}
-    </div>
-  </div>
+   <div className={[classes.Message, classes[props.sender]].join(' ')}>
+     <p className={[classes.Sender, classes[props.sender]].join(' ')}>{props.sender}</p>
+     <p className={[classes.Text, classes[props.sender]].join(' ')}>{props.message} </p>
+   </div>
 );
-
-/*Message.defaultProps = {
-  message: '',
-  username: '',
-  fromMe: false
-};*/
 
 export default Message;

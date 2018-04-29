@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Form from './../../components/Form/Form';
 import Message from './../../components/Message/Message';
 import MatchedItems from './../../components/MatchedItems/MatchedItems';
+import classes from './Chatroom.css';
 
 class Chatroom extends Component {
  state = {
@@ -19,21 +20,21 @@ class Chatroom extends Component {
     productName: "iPhone 7 128GB",
     brand: "Apple",
     category: "Phones & Tablets",
-    plan: 44.99
+    plan: "44.99 € per month"
    },
    {
    id: 2,
    productName: "iPhone 7 32GB",
    brand: "Apple",
    category: "Phones & Tablets",
-   plan: 39.99
+   plan: "39.99 € per month"
    },
    {
    id: 3,
    productName: "iPhone 7 Plus 128GB",
    brand: "Apple",
    category: "Phones & Tablets",
-   plan: 49.99
+   plan:"49,99 € per month"
    }
   ]
 }
@@ -58,8 +59,8 @@ class Chatroom extends Component {
    if (this.state.inputValue !== "") {
      const name = this.state.inputValue;
      updatedMessages.push({"sender": "User","msg":name});
-     updatedMessages.push({"sender": "Fred","msg": "Hello "+ name + "! In which categories of tecnologies are you interested in?"})
-     updatedMessages.push({"sender": "Fred","msg": "Phones & Tablets, Drones, Gaming & VR, Computing, Wearables?"})
+     updatedMessages.push({"sender": "Fred","msg": "Hello "+ name +
+     "! In which categories of tecnologies are you interested in? Phones & Tablets, Drones, Gaming & VR, Computing, Wearables."})
      //map through categories to make the list of possibilities
      console.log("name", name);
      this.setState({messages:updatedMessages, currentStep:1})
@@ -91,18 +92,14 @@ class Chatroom extends Component {
        updatedMessages.push({"sender": "Fred","msg": "These are our available products:"})
        const matches = matchedItems.map((m, id) => {
          return (
-           <table key={m.id} style={{width:'100%'}}>
-             <tbody>
-               <tr>
-                 <MatchedItems
-                   productName={m.productName}
-                   brand={m.brand}
-                   category={m.category}
-                   plan={m.plan}/>
-               </tr>
-             </tbody>
-           </table>
-         )
+           <p key={m.id}>
+              <MatchedItems
+                 productName={m.productName}
+                 brand={m.brand}
+                 category={m.category}
+                 plan={m.plan}/>
+           </p>
+         );
        })
        updatedMessages.push({"sender": "Fred","msg":matches})
        this.setState({messages:updatedMessages})
@@ -127,9 +124,11 @@ class Chatroom extends Component {
 
    return (
      <div>
-       <p>Chatroom</p>
-       <div style={{width:'600px',height:'700px',border:'1px solid'}}>
-          {messages}
+       <div className={classes.Title}>
+         <p>Chatroom</p>
+       </div>
+       <div className={classes.Chatroom}>
+         {messages}
        </div>
        <Form submitted={this.submitMessageHandler}
              value={this.state.inputValue}

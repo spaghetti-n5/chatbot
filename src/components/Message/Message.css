@@ -1,7 +1,39 @@
-.user {
-  background-color: yellow;
+.Message {
+  width: 400px;
+  color: white;
+  padding: 10px 0;
+  box-shadow: 0 2px 3px #ccc;
+  box-sizing: border-box;
+  border-radius: 16px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-.bot {
-  background-color: blue;
+.Sender {
+  font-weight: bold;
+  font-size: 18px;
+  padding-left: 7px;
+  margin-bottom: 3px;
+}
+
+.Text {
+  width: 350px;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 7px;
+  font-size: 16px;
+}
+
+.User {
+  background-color: #86BB71;
+  float: right;
+  text-align: right;
+  margin-right: 15px;
+}
+
+.Fred {
+  background-color: #94C2ED;
+  float: left;
+  text-align: left;
+  margin-left: 15px;
 }
