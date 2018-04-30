@@ -15,25 +15,25 @@ class Chatroom extends Component {
     }],
   products: [
     {
-    id: 1,
-    productName: "iPhone 7 128GB",
-    brand: "Apple",
-    category: "Phones & Tablets",
-    plan: "44.99€"
+     id: 1,
+     productName: "iPhone 7 128GB",
+     brand: "Apple",
+     category: "phones & tablets",
+     plan: 44.99
    },
    {
-   id: 2,
-   productName: "iPhone 7 32GB",
-   brand: "Apple",
-   category: "Phones & Tablets",
-   plan: "39.99€"
+     id: 2,
+     productName: "iPhone 7 32GB",
+     brand: "Apple",
+     category: "phones & tablets",
+     plan: 39.99
    },
    {
-   id: 3,
-   productName: "iPhone 7 Plus 128GB",
-   brand: "Apple",
-   category: "Phones & Tablets",
-   plan:"49,99€"
+     id: 3,
+     productName: "iPhone 7 Plus 128GB",
+     brand: "Apple",
+     category: "phones & tablets",
+     plan: 49.99
    }
   ]
 }
@@ -61,28 +61,29 @@ class Chatroom extends Component {
      updatedMessages.push({"sender": "Fred","msg": "Hello "+ name +
      "! In which categories of tecnologies are you interested in? Phones & Tablets, Drones, Gaming & VR, Computing, Wearables."})
      //map through categories to make the list of possibilities
-     console.log("name", name);
      this.setState({messages:updatedMessages, currentStep:1})
-     console.log(this.state.messages);
+     //console.log(this.state.messages);
    } else {
      updatedMessages.push({"sender": "User","msg":this.state.inputValue});
      updatedMessages.push({"sender": "Fred","msg":"I don't understand, please enter a valid name"});
      this.setState({messages:updatedMessages})
-     console.log(this.state.messages);
-     console.log("Step Error");
+     //console.log(this.state.messages);
    }
  }
 
  step2 = () => {
-   console.log("Working step2");
-   const category = this.state.inputValue;
-   console.log("category",category);
+   const selectedCategory = this.state.inputValue.toLowerCase();
    let updatedMessages = this.state.messages;
    updatedMessages.push({"sender": "User","msg":this.state.inputValue});
+   //Check if the selectedCategory has any matching products
    let matchedItems = this.state.products.filter(function(item){
-       return (item.category === category);
+     if (item.category.includes(selectedCategory) && selectedCategory!=="&") {
+       return (item);
+     } else {
+       return (null);
+     }
    });
-   console.log("matchedItems",matchedItems);
+   console.log(matchedItems);
    if (matchedItems.length === 0) {
        updatedMessages.push({"sender": "Fred","msg": "Sorry we don't have what you are looking for. Please try again"})
        this.setState({messages:updatedMessages})

@@ -10,7 +10,7 @@ const matchedItems = (props) => {
          <td>{m.id}</td>
          <td>{m.productName}</td>
          <td>{m.brand}</td>
-         <td>{m.plan}</td>
+         <td>{m.plan}€</td>
         </tr>
       </Aux>)
   });
