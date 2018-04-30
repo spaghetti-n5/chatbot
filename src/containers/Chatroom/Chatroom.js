@@ -9,7 +9,6 @@ class Chatroom extends Component {
  state = {
   inputValue: "",
   currentStep: 0,
-  userCat: [],
   messages: [
     {sender: "Fred",
      msg: "Hello my name is Fred, I am your personal chatbot. I am here to help you choosing the best product's plan. What is your name?"
@@ -20,21 +19,21 @@ class Chatroom extends Component {
     productName: "iPhone 7 128GB",
     brand: "Apple",
     category: "Phones & Tablets",
-    plan: "44.99 € per month"
+    plan: "44.99€"
    },
    {
    id: 2,
    productName: "iPhone 7 32GB",
    brand: "Apple",
    category: "Phones & Tablets",
-   plan: "39.99 € per month"
+   plan: "39.99€"
    },
    {
    id: 3,
    productName: "iPhone 7 Plus 128GB",
    brand: "Apple",
    category: "Phones & Tablets",
-   plan:"49,99 € per month"
+   plan:"49,99€"
    }
   ]
 }
@@ -83,24 +82,14 @@ class Chatroom extends Component {
    let matchedItems = this.state.products.filter(function(item){
        return (item.category === category);
    });
-   console.log(matchedItems);
+   console.log("matchedItems",matchedItems);
    if (matchedItems.length === 0) {
        updatedMessages.push({"sender": "Fred","msg": "Sorry we don't have what you are looking for. Please try again"})
        this.setState({messages:updatedMessages})
        console.log(this.state.messages);
    } else {
-       updatedMessages.push({"sender": "Fred","msg": "These are our available products:"})
-       const matches = matchedItems.map((m, id) => {
-         return (
-           <p key={m.id}>
-              <MatchedItems
-                 productName={m.productName}
-                 brand={m.brand}
-                 category={m.category}
-                 plan={m.plan}/>
-           </p>
-         );
-       })
+       //updatedMessages.push({"sender": "Fred","msg": "These are our available products:"})
+       let matches = <MatchedItems data={matchedItems}/>
        updatedMessages.push({"sender": "Fred","msg":matches})
        this.setState({messages:updatedMessages})
    }
