@@ -9,11 +9,11 @@ class Chatroom extends Component {
   state = {
     inputValue: "",
     currentStep: 0,
-    categories: ["Phones & Tablets","Drones","Gaming & VR","Computing","Wearables","Smart Home"],
+    categories: ["\n- Phones & Tablets","\n- Drones","\n- Gaming & VR","\n- Computing","\n- Wearables","\n- Smart Home"],
     messages: [
       {
         sender: "Fred",
-        msg: "Hello my name is Fred, I am your personal chatbot. I am here to help you choosing the best product's plan. What is your name?"
+        msg: "Hello my name is Fred, I am your personal chatbot!\nI am here to help you choosing the best product's plan.\nWhat is your name?"
       }
     ],
     products: [
@@ -197,7 +197,7 @@ class Chatroom extends Component {
       console.log(availableCategories);
       updatedMessages.push({
         "sender": "Fred",
-        "msg": "Hello "+ name +"! Please type the name of the category that your desired product belongs to, you can choose between: "+ availableCategories +"."
+        "msg": "Hello "+ name +"!\nPlease type the name of the category that your desired product belongs to, you can choose between: "+ availableCategories +"."
       });
       this.setState({messages: updatedMessages, currentStep: 1})
       //console.log(this.state.messages);
@@ -223,7 +223,7 @@ class Chatroom extends Component {
     });
     console.log("matchedItems",matchedItems);
     if (matchedItems.length === 0) {
-      updatedMessages.push({"sender": "Fred", "msg": "Sorry we don't have what you are looking for. Please try again"})
+      updatedMessages.push({"sender": "Fred", "msg": "Sorry we don't have what you are looking for. \nPlease try again."})
       this.setState({messages: updatedMessages})
       console.log(this.state.messages);
     } else {
@@ -244,10 +244,10 @@ class Chatroom extends Component {
     });
     console.log("matchedPlan",matchedPlan);
     if (matchedPlan.length === 0) {
-      updatedMessages.push({"sender": "Fred", "msg": "Nothing found. Please enter a valid number N° of the product."});
+      updatedMessages.push({"sender": "Fred", "msg": "Nothing found.\nPlease enter a valid number N° of the product."});
       this.setState({messages: updatedMessages})
     } else {
-      updatedMessages.push({"sender": "Fred", "msg": "Fantastic! You chose "
+      updatedMessages.push({"sender": "Fred", "msg": "Fantastic!\nYou chose "
       +matchedPlan[0].productName +" for "+matchedPlan[0].plan+" € per month."});
       this.setState({messages: updatedMessages})
     }
