@@ -190,7 +190,9 @@ class Chatroom extends Component {
 
   step1 = () => {
     let updatedMessages = this.state.messages;
-    if (this.state.inputValue !== "") {
+    //Validation of the input for empty spaces:
+    //console.log(this.state.inputValue.replace(/^\s+/g, ""));
+    if (this.state.inputValue.replace(/^\s+/g, "") !== "") {
       const name = this.state.inputValue;
       updatedMessages.push({"sender": "User", "msg": name});
       const availableCategories = this.state.categories.join(", ");
