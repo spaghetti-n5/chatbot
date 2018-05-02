@@ -215,9 +215,10 @@ class Chatroom extends Component {
     const selectedCategory = this.state.inputValue.toLowerCase();
     let updatedMessages = this.state.messages;
     updatedMessages.push({"sender": "User", "msg": this.state.inputValue});
-    //Check if the selectedCategory has any matching products
+    //Check if the selectedCategory has any match in the products Array
+    let re = new RegExp('(\\b)(' + selectedCategory + ')(\\b)','ig');
     let matchedItems = this.state.products.filter(function(item) {
-      if (item.category.includes(selectedCategory) && selectedCategory !== "&") {
+      if (item.category.match(re)) {
         return (item);
       } else {
         return (null);
