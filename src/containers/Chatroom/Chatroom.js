@@ -261,18 +261,23 @@ class Chatroom extends Component {
 
   render() {
     const messages = this.state.messages.map((message, i) => {
-      return (<Message key={i} message={message.msg} sender={message.sender}/>);
+      return (
+        <Message key={i} message={message.msg} sender={message.sender}/>
+      );
     });
 
-    return (<div>
-      <div className={classes.Title}>
-        <p>Chatroom</p>
+    return (
+      <div>
+        <div className={classes.Title}>
+          <p>Chatroom</p>
+        </div>
+        <div className={classes.Chatroom}>
+          {messages}
+        </div>
+        <Form submitted={this.submitMessageHandler} value={this.state.inputValue}
+          changed={this.inputChangedHandler} keyboard={this.keyPressHandler}/>
       </div>
-      <div className={classes.Chatroom}>
-        {messages}
-      </div>
-      <Form submitted={this.submitMessageHandler} value={this.state.inputValue} changed={this.inputChangedHandler} keyboard={this.keyPressHandler}/>
-    </div>);
+    );
   }
 }
 

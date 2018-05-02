@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import classes from './Form.css';
 
@@ -9,5 +10,12 @@ const form = (props) => (
     <input type="submit" value="Submit" className={classes.Submit} />
   </form>
 );
+
+form.propTypes = {
+  submitted: PropTypes.func,
+  value: PropTypes.string,
+  changed: PropTypes.func,
+  keyboard: PropTypes.func
+};
 
 export default form;
