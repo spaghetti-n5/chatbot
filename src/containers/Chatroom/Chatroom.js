@@ -178,7 +178,7 @@ class Chatroom extends Component {
   submitMessageHandler = (event) => {
     event.preventDefault();
     this.setState({inputValue: ""});
-
+    //Conversation workflow divided in steps
     if (this.state.currentStep === 0) {
       this.step1();
     } else if (this.state.currentStep === 1) {
@@ -188,29 +188,28 @@ class Chatroom extends Component {
     }
   }
 
+  //step1: get name from the user input and suggest availableCategories
   step1 = () => {
     let updatedMessages = this.state.messages;
     //Validation of the input for empty spaces:
-    //console.log(this.state.inputValue.replace(/^\s+/g, ""));
     if (this.state.inputValue.replace(/^\s+/g, "") !== "") {
       const name = this.state.inputValue;
       updatedMessages.push({"sender": "User", "msg": name});
       const availableCategories = this.state.categories.join(", ");
-      console.log(availableCategories);
       updatedMessages.push({
         "sender": "Fred",
         "msg": "Hello "+ name +"!\nPlease type the name of the category that your desired product belongs to, you can choose between: "+ availableCategories +"."
       });
       this.setState({messages: updatedMessages, currentStep: 1})
-      //console.log(this.state.messages);
     } else {
       updatedMessages.push({"sender": "User", "msg": this.state.inputValue});
       updatedMessages.push({"sender": "Fred", "msg": "I don't understand, please enter a valid name"});
       this.setState({messages: updatedMessages})
-      //console.log(this.state.messages);
     }
   }
 
+  /*step2: get the desired category from the user-input (selectedCategory) and display the available
+   products in that category (matchedItems)*/
   step2 = () => {
     const selectedCategory = this.state.inputValue.toLowerCase();
     let updatedMessages = this.state.messages;
@@ -224,11 +223,10 @@ class Chatroom extends Component {
         return (null);
       }
     });
-    console.log("matchedItems",matchedItems);
+    //console.log("matchedItems",matchedItems);
     if (matchedItems.length === 0) {
       updatedMessages.push({"sender": "Fred", "msg": "Sorry we don't have what you are looking for. \nPlease try again."})
       this.setState({messages: updatedMessages})
-      console.log(this.state.messages);
     } else {
       let matches = <MatchedItems data={matchedItems}/>
       updatedMessages.push({"sender": "Fred", "msg": matches});
@@ -237,15 +235,15 @@ class Chatroom extends Component {
     }
   }
 
+  //step3: get the desired product from the user-input and suggest a proper subscription plan
   step3 = () => {
     const selectedProduct = this.state.inputValue;
     let updatedMessages = this.state.messages;
-    console.log(updatedMessages);
     updatedMessages.push({"sender": "User", "msg": selectedProduct});
     let matchedPlan = this.state.products.filter(function(item) {
       return (item.id.toString() === selectedProduct);
     });
-    console.log("matchedPlan",matchedPlan);
+    //console.log("matchedPlan",matchedPlan);
     if (matchedPlan.length === 0) {
       updatedMessages.push({"sender": "Fred", "msg": "Nothing found.\nPlease enter a valid number N° of the product."});
       this.setState({messages: updatedMessages})
